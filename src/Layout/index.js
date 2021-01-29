@@ -1,8 +1,14 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import Header from './Header'
 
 const Layout = ({ children }) => {
-  return <div>{children}</div>
+  return (
+    <div>
+      <Header />
+      <div>{children}</div>
+    </div>
+  )
 }
 
 export default Layout
