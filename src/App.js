@@ -2,7 +2,6 @@ import { BrowserRouter as Router } from 'react-router-dom'
 import { Provider } from 'react-redux'
 import { store } from './Redux/Store'
 import Layout from './Layout'
-import './App.css'
 import AppRouter from './Routes'
 
 function App() {
