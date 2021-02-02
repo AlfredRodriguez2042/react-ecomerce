@@ -1,6 +1,8 @@
-import { makeStyles, Toolbar } from '@material-ui/core'
-import React from 'react'
+import { Hidden, IconButton, makeStyles, Toolbar } from '@material-ui/core'
+import MenuIcon from '@material-ui/icons/Menu'
+import React, { useState } from 'react'
 import { NavLink } from 'react-router-dom'
+import DrawerMenu from './DrawerMenu'
 
 const useStyles = makeStyles((theme) => ({
   toolbarNav: {
@@ -15,18 +17,45 @@ const useStyles = makeStyles((theme) => ({
     color: '#53575A',
   },
 }))
-
+const sections = [
+  { name: 'Home', url: '/', icon: 'icon' },
+  { name: 'About', url: '/about' },
+  {
+    name: 'Sign Up',
+    url: '/signup',
+  },
+  {
+    name: 'Login',
+    url: '/login',
+  },
+]
 const NavBar = () => {
+  const [open, setOpen] = useState(false)
   const classes = useStyles()
+  const handleDrawerOpen = () => {
+    setOpen(!open)
+  }
   return (
-    <div>
+    <div onClick={handleDrawerOpen}>
       <Toolbar component="nav" variant="dense" className={classes.toolbarNav}>
-        <NavLink to="/" className={classes.toolbarLink}>
-          Home
-        </NavLink>
-        <NavLink to="/about" className={classes.toolbarLink}>
-          About
-        </NavLink>
+        <Hidden smUp>
+          <NavLink to="/" className={classes.toolbarLink}>
+            Home
+          </NavLink>
+          <NavLink to="/about" className={classes.toolbarLink}>
+            About
+          </NavLink>
+        </Hidden>
+        <IconButton
+          edge="start"
+          className={classes.menuButton}
+          color="inherit"
+          aria-label="open drawer"
+          onClick={handleDrawerOpen}
+        >
+          <MenuIcon />
+        </IconButton>
+        <DrawerMenu sections={sections} open={open} />
       </Toolbar>
     </div>
   )

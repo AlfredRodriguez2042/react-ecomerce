@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { ProductsAction } from '../../Redux/Actions/Products'
+import Page from '../../Components/Base/Page'
 
 const Home = () => {
   const dispatch = useDispatch()
@@ -18,13 +19,13 @@ const Home = () => {
   }
 
   return (
-    <div>
+    <Page title="Shopify">
       {products.map((product, i) => (
         <div key={i}>
           <div>{product.name}</div>
         </div>
       ))}
-    </div>
+    </Page>
   )
 }
 
