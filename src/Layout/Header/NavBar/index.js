@@ -35,10 +35,11 @@ const NavBar = () => {
   const handleDrawerOpen = () => {
     setOpen(!open)
   }
+  const setClosed = () => setOpen(false)
   return (
-    <div onClick={handleDrawerOpen}>
+    <div>
       <Toolbar component="nav" variant="dense" className={classes.toolbarNav}>
-        <Hidden smUp>
+        <Hidden smDown>
           <NavLink to="/" className={classes.toolbarLink}>
             Home
           </NavLink>
@@ -46,16 +47,19 @@ const NavBar = () => {
             About
           </NavLink>
         </Hidden>
-        <IconButton
-          edge="start"
-          className={classes.menuButton}
-          color="inherit"
-          aria-label="open drawer"
-          onClick={handleDrawerOpen}
-        >
-          <MenuIcon />
-        </IconButton>
-        <DrawerMenu sections={sections} open={open} />
+        <Hidden mdUp>
+          <IconButton
+            edge="start"
+            className={classes.menuButton}
+            color="inherit"
+            aria-label="open drawer"
+            onClick={handleDrawerOpen}
+          >
+            <MenuIcon />
+          </IconButton>
+        </Hidden>
+
+        <DrawerMenu sections={sections} setOpen={open} setClosed={setClosed} />
       </Toolbar>
     </div>
   )

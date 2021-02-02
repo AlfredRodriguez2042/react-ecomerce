@@ -6,8 +6,8 @@ import {
   makeStyles,
 } from '@material-ui/core'
 
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React, { useEffect } from 'react'
+import { Link, useLocation } from 'react-router-dom'
 
 const drawerWidth = 210
 const useStyles = makeStyles((theme) => ({
@@ -22,24 +22,30 @@ const useStyles = makeStyles((theme) => ({
   },
   drawerPaperClose: {
     overflowX: 'hidden',
-    transition: theme.transitions.create('width', {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen,
-    }),
-    width: theme.spacing(7),
-    [theme.breakpoints.up('sm')]: {
-      width: theme.spacing(9),
-    },
+    // transition: theme.transitions.create('width', {
+    //   easing: theme.transitions.easing.sharp,
+    //   duration: theme.transitions.duration.leavingScreen,
+    // }),
   },
 }))
 
-const DrawerMenu = ({ sections, open }) => {
+const DrawerMenu = ({ sections, setOpen, setClosed }) => {
   const classes = useStyles()
-  console.log(open)
+  const location = useLocation()
+  useEffect(() => {
+    if (setOpen && setClosed) {
+      setClosed()
+    }
+  }, [location.pathname])
+
   return (
     <Drawer
-      open={open}
-      classes={{ paper: open ? classes.drawerPaper : classes.drawerPaperClose }}
+      open={setOpen}
+      onClose={setClosed}
+      classes={{
+        paper: setOpen ? classes.drawerPaper : classes.drawerPaperClose,
+      }}
+      variant="temporary"
     >
       <List>
         {sections.map((section, i) => (

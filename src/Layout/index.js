@@ -20,7 +20,7 @@ const Layout = ({ children }) => {
     <div className={classes.root}>
       <Grid container>
         <Grid item xs={12} md={12} xl={12} className={classes.header}>
-          <Header title="titleaaaaaaaaaaaaaaaaa" />
+          <Header title="Shopify" />
         </Grid>
         <Grid item>{children}</Grid>
       </Grid>
@@ -30,6 +30,6 @@ const Layout = ({ children }) => {
 }
 
 Layout.prototypes = {
-  children: PropTypes.element.isRequired,
+  children: PropTypes.node.isRequired,
 }
 export default Layout

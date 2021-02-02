@@ -6,6 +6,7 @@ import {
   Typography,
 } from '@material-ui/core'
 import React from 'react'
+import Search from '../../Components/Search'
 import NavBar from './NavBar'
 
 const useStyles = makeStyles((theme) => ({
@@ -32,6 +33,7 @@ const Header = ({ title }) => {
             >
               {title}
             </Typography>
+            <Search />
             <NavBar />
           </Grid>
         </Container>

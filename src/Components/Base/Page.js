@@ -14,7 +14,7 @@ const Page = forwardRef(({ children, title = '', ...rest }, ref) => {
 })
 
 Page.propTypes = {
-  children: PropTypes.element.isRequired,
+  children: PropTypes.node.isRequired,
   title: PropTypes.string,
 }
 
