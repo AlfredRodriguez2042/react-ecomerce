@@ -6,7 +6,7 @@ import DrawerMenu from './DrawerMenu'
 
 const useStyles = makeStyles((theme) => ({
   toolbarNav: {
-    justifyContent: 'space-between',
+    //   justifyContent: 'space-between',
     overflowX: 'auto',
   },
   toolbarLink: {
@@ -37,31 +37,23 @@ const NavBar = () => {
   }
   const setClosed = () => setOpen(false)
   return (
-    <div>
-      <Toolbar component="nav" variant="dense" className={classes.toolbarNav}>
-        <Hidden smDown>
-          <NavLink to="/" className={classes.toolbarLink}>
-            Home
-          </NavLink>
-          <NavLink to="/about" className={classes.toolbarLink}>
-            About
-          </NavLink>
-        </Hidden>
-        <Hidden mdUp>
-          <IconButton
-            edge="start"
-            className={classes.menuButton}
-            color="inherit"
-            aria-label="open drawer"
-            onClick={handleDrawerOpen}
-          >
-            <MenuIcon />
-          </IconButton>
-        </Hidden>
+    <Toolbar component="nav" variant="dense" className={classes.toolbarNav}>
+      <Hidden smDown>
+        <NavLink to="/" className={classes.toolbarLink}>
+          Home
+        </NavLink>
+        <NavLink to="/about" className={classes.toolbarLink}>
+          About
+        </NavLink>
+      </Hidden>
+      <Hidden mdUp>
+        <IconButton edge="start" onClick={handleDrawerOpen}>
+          <MenuIcon />
+        </IconButton>
+      </Hidden>
 
-        <DrawerMenu sections={sections} setOpen={open} setClosed={setClosed} />
-      </Toolbar>
-    </div>
+      <DrawerMenu sections={sections} setOpen={open} setClosed={setClosed} />
+    </Toolbar>
   )
 }
 

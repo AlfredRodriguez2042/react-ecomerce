@@ -1,4 +1,5 @@
 import { lazy } from 'react'
+import { SingleProduct } from '../Components/Product'
 
 const Home = lazy(() => import('../Views/Home'))
 const SingUp = lazy(() => import('../Views/SignUp'))
@@ -19,5 +20,15 @@ export const Routes = [
     path: '/login',
     exact: true,
     component: Login,
+  },
+  {
+    path: '/cart/:id',
+    exact: true,
+    component: SingleProduct,
+  },
+  {
+    path: '/product/:id',
+    exact: true,
+    component: SingleProduct,
   },
 ]

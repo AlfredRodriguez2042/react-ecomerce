@@ -1,10 +1,11 @@
 import { createStore, applyMiddleware, combineReducers, compose } from 'redux'
 import { composeWithDevTools } from 'redux-devtools-extension'
 import thunk from 'redux-thunk'
-import { ProductsList } from './Reducers/Product'
+import { getProductId, ProductsList } from './Reducers/Product'
 
 const reducer = combineReducers({
   products: ProductsList,
+  productId: getProductId,
 })
 
 let storeEnchance

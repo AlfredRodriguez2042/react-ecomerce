@@ -1,12 +1,15 @@
 //  import axios from 'axios'
 import {
   GET_PRODUCTS_LIST,
+  GET_PRODUCT_ID,
+  PRODUCTS_ID_ERROR,
+  PRODUCTS_ID_SUCCESS,
   PRODUCTS_LIST_ERROR,
   PRODUCTS_LIST_SUCCESS,
 } from '../types'
-import data from '../../data'
+import Data from '../../data'
 
-export const ProductsAction = () => async (dispatch) => {
+export const getProductsAction = () => async (dispatch) => {
   dispatch({
     type: GET_PRODUCTS_LIST,
   })
@@ -14,11 +17,31 @@ export const ProductsAction = () => async (dispatch) => {
     // const { data } = axios.get('/api/products')
     dispatch({
       type: PRODUCTS_LIST_SUCCESS,
-      payload: data.products,
+      payload: Data.products,
     })
   } catch (error) {
     dispatch({
       type: PRODUCTS_LIST_ERROR,
+      payload: error.message,
+    })
+  }
+}
+export const getProductId = (id) => async (dispatch) => {
+  dispatch({
+    type: GET_PRODUCT_ID,
+  })
+  const product = Data.products.find((product) => product._id === id)
+
+  try {
+    dispatch({
+      type: PRODUCTS_ID_SUCCESS,
+      payload: product,
+    })
+
+    //  const { data } = await axios.get(Data)
+  } catch (error) {
+    dispatch({
+      type: PRODUCTS_ID_ERROR,
       payload: error.message,
     })
   }

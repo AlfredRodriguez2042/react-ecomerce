@@ -1,22 +1,17 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { ProductsAction } from '../../Redux/Actions/Products'
+import { getProductsAction } from '../../Redux/Actions/Products'
 import Page from '../../Components/Base/Page'
-import { makeStyles } from '@material-ui/core'
+import { Container, Grid } from '@material-ui/core'
 
-const useStyles = makeStyles(() => ({
-  root: {
-    minHeight: '100%',
-  },
-}))
+import { ProductContent } from '../../Components/Product'
 
 const Home = () => {
-  const classes = useStyles()
   const dispatch = useDispatch()
   const productsList = useSelector((state) => state.products)
   const { loading, error, products } = productsList
   useEffect(() => {
-    dispatch(ProductsAction())
+    dispatch(getProductsAction())
   }, [dispatch])
 
   if (loading) {
@@ -27,12 +22,14 @@ const Home = () => {
   }
 
   return (
-    <Page title="Shopify" className={classes.root}>
-      {products.map((product, i) => (
-        <div key={i}>
-          <div>{product.name}</div>
-        </div>
-      ))}
+    <Page title="Shopify">
+      <Container>
+        <Grid container justify="center" spacing={3}>
+          {products.map((product, i) => (
+            <ProductContent key={i} product={product} />
+          ))}
+        </Grid>
+      </Container>
     </Page>
   )
 }

@@ -22,8 +22,9 @@ const Layout = ({ children }) => {
         <Grid item xs={12} md={12} xl={12} className={classes.header}>
           <Header title="Shopify" />
         </Grid>
-        <Grid item>{children}</Grid>
       </Grid>
+      <div>{children}</div>
+
       <Footer />
     </div>
   )
