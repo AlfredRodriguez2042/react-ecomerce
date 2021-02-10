@@ -7,7 +7,7 @@ import {
 } from '@material-ui/core'
 import React from 'react'
 import Search from '../../Components/Search'
-import Cart from '../../Components/Buttons/Cart'
+import ButtonCart from '../../Components/Buttons/ButtonCart'
 import Logo from '../../Components/Logo'
 import NavBar from './NavBar'
 import { Link } from 'react-router-dom'
@@ -63,8 +63,8 @@ const Header = ({ title }) => {
           <div className={classes.grow}>
             <Search />
             <NavBar />
-            <Link to="/cart">
-              <Cart />
+            <Link to="/app/cart">
+              <ButtonCart />
             </Link>
           </div>
         </Grid>

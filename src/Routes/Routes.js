@@ -2,6 +2,7 @@ import { lazy } from 'react'
 import { SingleProduct } from '../Components/Product'
 
 const Home = lazy(() => import('../Views/Home'))
+const Cart = lazy(() => import('../Views/Cart'))
 const SingUp = lazy(() => import('../Views/SignUp'))
 const Login = lazy(() => import('../Views/Login'))
 
@@ -22,9 +23,9 @@ export const Routes = [
     component: Login,
   },
   {
-    path: '/cart/:id',
+    path: '/app/cart/',
     exact: true,
-    component: SingleProduct,
+    component: Cart,
   },
   {
     path: '/product/:id',

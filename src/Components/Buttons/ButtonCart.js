@@ -2,7 +2,7 @@ import React from 'react'
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart'
 import { IconButton } from '@material-ui/core'
 
-const Cart = () => {
+const ButtonCart = () => {
   return (
     <div>
       <IconButton>
@@ -12,4 +12,4 @@ const Cart = () => {
   )
 }
 
-export default Cart
+export default ButtonCart

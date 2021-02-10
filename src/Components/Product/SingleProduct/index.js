@@ -11,9 +11,11 @@ import { Rating } from '@material-ui/lab'
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
+import { addToCartAction } from '../../../Redux/Actions/Cart'
 import { getProductId } from '../../../Redux/Actions/Products'
 import Page from '../../Base/Page'
 import Buttons from './Buttons'
+import Quantity from './Quantity'
 import Status from './Status'
 
 const useStyles = makeStyles(() => ({
@@ -29,7 +31,11 @@ const SingleProduct = () => {
   const { id } = useParams()
   const ProductId = useSelector((state) => state.productId)
   const { error, loading, product } = ProductId
-  console.log(product)
+
+  const handlerCart = () => {
+    dispatch(addToCartAction(product))
+  }
+
   useEffect(() => {
     dispatch(getProductId(id))
   }, [dispatch, id])
@@ -41,7 +47,7 @@ const SingleProduct = () => {
   }
   return (
     <div>
-      <Page title={product.name}>
+      <Page title={`Shopify | ${product.name}`}>
         <Container maxWidth="md">
           <Grid container spacing={3}>
             <Grid item xs={12} sm={6}>
@@ -67,13 +73,16 @@ const SingleProduct = () => {
                     </Typography>
                     <Status stock={product.countInStock} />
                     <Typography>Stock: {product.countInStock}</Typography>
+                    <Quantity stock={product.countInStock} />
                     <Typography variant="subtitle1">
                       Description: {product.description}
                       <br />
                       Continue reading...
                     </Typography>
-
-                    <Buttons stock={product.countInStock} />
+                    <Buttons
+                      handlerCart={handlerCart}
+                      stock={product.countInStock}
+                    />
                   </CardContent>
                 </div>
               </Card>

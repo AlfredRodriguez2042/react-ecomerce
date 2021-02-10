@@ -1,8 +1,7 @@
 import { Button } from '@material-ui/core'
 import React from 'react'
 
-const Buttons = ({ stock }) => {
-  console.log(stock)
+const Buttons = ({ handlerCart, stock }) => {
   return (
     <div>
       <Button
@@ -15,6 +14,7 @@ const Buttons = ({ stock }) => {
         Buy Now
       </Button>
       <Button
+        onClick={handlerCart}
         variant="contained"
         fullWidth
         color="secondary"
