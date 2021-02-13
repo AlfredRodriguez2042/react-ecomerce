@@ -62,11 +62,11 @@ const Header = ({ title }) => {
           </div>
           <div className={classes.grow}>
             <Search />
-            <NavBar />
-            <Link to="/app/cart">
-              <ButtonCart />
-            </Link>
           </div>
+          <NavBar />
+          <Link to="/app/cart">
+            <ButtonCart />
+          </Link>
         </Grid>
       </Container>
     </AppBar>
