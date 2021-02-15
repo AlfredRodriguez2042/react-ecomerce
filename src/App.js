@@ -1,21 +1,48 @@
 import { BrowserRouter as Router } from 'react-router-dom'
-import { Provider } from 'react-redux'
-import { persistor, store } from './Redux/Store'
-import Layout from './Layout'
 import AppRouter from './Routes'
-import { PersistGate } from 'redux-persist/integration/react'
+import {
+  createMuiTheme,
+  CssBaseline,
+  makeStyles,
+  Switch,
+  ThemeProvider,
+} from '@material-ui/core'
+import { useState } from 'react'
+
+const useStyles = makeStyles({
+  mode: {
+    position: 'absolute',
+    right: '24px',
+    top: '12.5px',
+  },
+})
 
 function App() {
+  const [darkMode, setDarkMode] = useState(false)
+  const classes = useStyles()
+
+  const handleDark = () => {
+    setDarkMode(!darkMode)
+  }
+  const theme = createMuiTheme({
+    palette: {
+      type: darkMode ? 'dark' : 'light',
+    },
+  })
   return (
-    <Provider store={store}>
-      <PersistGate loading={null} persistor={persistor}>
+    <ThemeProvider theme={theme}>
+      <CssBaseline>
         <Router>
-          <Layout>
-            <AppRouter />
-          </Layout>
+          <Switch
+            className={classes.mode}
+            size="small"
+            checked={darkMode}
+            onChange={handleDark}
+          />
+          <AppRouter />
         </Router>
-      </PersistGate>
-    </Provider>
+      </CssBaseline>
+    </ThemeProvider>
   )
 }
 
