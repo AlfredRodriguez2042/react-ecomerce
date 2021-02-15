@@ -1,4 +1,5 @@
 import React, { lazy, Suspense } from 'react'
+import { useSelector } from 'react-redux'
 import { Redirect, Route, Switch } from 'react-router-dom'
 import { main } from './Routes'
 
@@ -6,22 +7,22 @@ const Page404 = lazy(() => import('../Views/Page404'))
 const AppRouter = () => {
   const renderRoutes = (routes, contextPath) => {
     const children = []
-    const role = 2
-    const isAuth = null
+    const role = useSelector((state) => state.user.user.role)
+    const isAuth = useSelector((state) => state.user.isAuth)
 
     const renderRoute = (item, routeContextPath) => {
       let newContextPath = item.path
         ? `${routeContextPath}/${item.path}`
         : routeContextPath
       newContextPath = newContextPath.replace(/\/+/g, '/')
-      if (newContextPath.includes('admin') && role !== 1) {
+      if (newContextPath.includes('admin') && role !== 'admin') {
         item = {
           ...item,
           component: () => <Redirect to="/" />,
           children: [],
         }
       }
-      if (newContextPath.includes('app') && isAuth !== 'isAuth') {
+      if (newContextPath.includes('app') && !isAuth) {
         item = {
           ...item,
           component: () => <Redirect to="/" />,

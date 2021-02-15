@@ -23,7 +23,7 @@ const AdminLayout = ({ children }) => {
           <Header title="Shopify" />
         </Grid>
       </Grid>
-      <div>{children}</div>
+      <Grid item> {children}</Grid>
 
       <Footer />
     </div>

@@ -32,6 +32,7 @@ const useStyles = makeStyles((theme) => ({
   },
   grid: {
     flexWrap: 'nowrap',
+    paddingRight: '32px',
   },
   brand: {
     display: 'flex',
@@ -40,9 +41,9 @@ const useStyles = makeStyles((theme) => ({
     textDecoration: 'none',
   },
 }))
-
 const Header = ({ title }) => {
   const classes = useStyles()
+
   return (
     <AppBar position="static" color="inherit">
       <Container component="header" maxWidth="xl">

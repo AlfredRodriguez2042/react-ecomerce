@@ -9,9 +9,11 @@ import MenuIcon from '@material-ui/icons/Menu'
 import React, { useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import DrawerMenu from './DrawerMenu'
-import LoginModal from '../../../Components/Modal'
 import FormRegister from '../../../Components/Forms/Register'
 import ModalForm from '../../../Components/Modal/ModalForm'
+import LoginForm from 'src/Components/Forms/Login'
+import ProfileMenu from 'src/Components/menu/ProfileMenu'
+import { useSelector } from 'react-redux'
 
 const useStyles = makeStyles((theme) => ({
   toolbarNav: {
@@ -39,6 +41,7 @@ const sections = [
   },
 ]
 const NavBar = () => {
+  const user = useSelector((state) => state.user)
   const [open, setOpen] = useState(false)
   const [login, setLogin] = useState(false)
   const [register, setRegister] = useState(false)
@@ -69,19 +72,43 @@ const NavBar = () => {
           About
         </NavLink>
 
-        <LoginModal open={login} setClosed={loginClosed} setOpen={loginOpen} />
-        <Button
-          size="small"
-          color="secondary"
-          variant="outlined"
-          onClick={registerOpen}
-          style={{ marginLeft: '8px' }}
-        >
-          sign up
-        </Button>
-        <ModalForm title="Register" open={register} setClosed={registerClosed}>
-          <FormRegister setClosed={registerClosed} />
-        </ModalForm>
+        {user.isAuth ? (
+          <>
+            <ProfileMenu />
+          </>
+        ) : (
+          <>
+            <Button
+              size="small"
+              color="primary"
+              variant="contained"
+              onClick={loginOpen}
+              disableElevation
+            >
+              Login
+            </Button>
+
+            <ModalForm title="Login" open={login} setClosed={loginClosed}>
+              <LoginForm />
+            </ModalForm>
+            <Button
+              size="small"
+              color="secondary"
+              variant="outlined"
+              onClick={registerOpen}
+              style={{ marginLeft: '8px' }}
+            >
+              sign up
+            </Button>
+            <ModalForm
+              title="Register"
+              open={register}
+              setClosed={registerClosed}
+            >
+              <FormRegister setClosed={registerClosed} />
+            </ModalForm>
+          </>
+        )}
       </Hidden>
       <Hidden mdUp>
         <IconButton edge="start" onClick={handleDrawerOpen}>
