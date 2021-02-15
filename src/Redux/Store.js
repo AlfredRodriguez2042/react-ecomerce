@@ -5,11 +5,13 @@ import storage from 'redux-persist/lib/storage' // defaults to localStorage for 
 import thunk from 'redux-thunk'
 import { addToCartReducer } from './Reducers/Cart'
 import { getProductId, ProductsList } from './Reducers/Product'
+import { loginUserReducer } from './Reducers/User'
 
 const reducer = combineReducers({
   products: ProductsList,
   productId: getProductId,
   cart: addToCartReducer,
+  user: loginUserReducer,
 })
 
 let storeEnchance
@@ -23,7 +25,7 @@ if (process.env.NODE_ENV !== 'production') {
 const persistConfig = {
   key: 'x-state',
   storage,
-  blacklist: ['user', 'articles'],
+  blacklist: ['user', 'mode'],
 }
 const persistedReducer = persistReducer(persistConfig, reducer)
 // 1 reducer 2 state 3 middleware
