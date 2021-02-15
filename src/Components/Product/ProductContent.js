@@ -25,13 +25,16 @@ const useStyles = makeStyles((theme) => ({
     paddingBottom: theme.spacing(8),
     flexGrow: 1,
   },
+  link: {
+    textDecoration: 'none',
+  },
 }))
 
 export const ProductContent = ({ product }) => {
   const classes = useStyles()
   return (
     <Grid align="center" item xs={12} sm={6} md={4} lg={3}>
-      <Link to={`/product/${product._id}`}>
+      <Link to={`/product/${product._id}`} className={classes.link}>
         <Card className={classes.card}>
           <CardMedia className={classes.cardMedia} image={product.image} />
           <CardContent>
