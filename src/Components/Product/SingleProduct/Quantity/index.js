@@ -6,7 +6,7 @@ const Quantity = ({ stock }) => {
     <div>
       <span>Quantity: </span>
       <FormControl disabled={stock === 0}>
-        <NativeSelect style={{ padding: 0 }}>
+        <NativeSelect inputProps={{ style: { padding: '0px 2px ' } }}>
           {[...Array(stock).keys()].map((i) => (
             <option key={i + 1} value={i + 1}>
               {' '}

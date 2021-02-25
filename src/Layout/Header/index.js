@@ -33,6 +33,7 @@ const useStyles = makeStyles((theme) => ({
   grid: {
     flexWrap: 'nowrap',
     paddingRight: '32px',
+    height: 60,
   },
   brand: {
     display: 'flex',

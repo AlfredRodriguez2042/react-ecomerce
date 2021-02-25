@@ -7,6 +7,7 @@ import Footer from '../Footer'
 const useStyles = makeStyles(() => ({
   header: {
     marginBottom: '5px',
+    height: 60,
   },
   root: {
     flexGrow: 1,

@@ -9,6 +9,8 @@ const Cart = lazy(() => import('../Views/Cart'))
 const SingUp = lazy(() => import('../Views/SignUp'))
 const Login = lazy(() => import('../Views/Login'))
 const Dashboard = lazy(() => import('../Views/Dashboard'))
+const Customers = lazy(() => import('../Views/Customers'))
+const Profile = lazy(() => import('../Views/Profile'))
 
 const Public = {
   path: '/',
@@ -41,40 +43,43 @@ const Public = {
       component: SingleProduct,
     },
     {
+      path: '/app/profile',
+      exact: true,
+      component: Profile,
+    },
+    {
       path: '*',
       component: Page404,
     },
   ],
 }
 
-const PrivateRoute = {
-  path: '/app',
-  name: 'home',
-  component: PublicLayout,
-  childRoutes: [
-    {
-      path: '/',
-      exact: true,
-      component: Home,
-    },
-    {
-      path: '/signup',
-      exact: true,
-      component: SingUp,
-    },
-  ],
-}
 const Admin = {
   path: '/admin',
   name: 'home',
   component: AdminLayout,
   childRoutes: [
     {
-      path: '',
+      path: 'dashboard',
 
       component: Dashboard,
+    },
+    {
+      path: '/products',
+      exact: true,
+      component: Home,
+    },
+    {
+      path: '/customers',
+      exact: true,
+      component: Customers,
+    },
+    {
+      path: '/profile',
+      exact: true,
+      component: Profile,
     },
   ],
 }
 
-export const main = [Admin, Public, PrivateRoute]
+export const main = [Admin, Public]

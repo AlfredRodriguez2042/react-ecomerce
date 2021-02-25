@@ -3,6 +3,8 @@ import Menu from '@material-ui/core/Menu'
 import MenuItem from '@material-ui/core/MenuItem'
 import { ArrowDropDown, ExitToApp, Person, Settings } from '@material-ui/icons'
 import { Avatar, IconButton, makeStyles } from '@material-ui/core'
+import { Link } from 'react-router-dom'
+import { useSelector } from 'react-redux'
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -13,6 +15,7 @@ const useStyles = makeStyles(() => ({
   },
 }))
 export default function SimpleMenu() {
+  const role = useSelector((state) => state.user.user.role)
   const classes = useStyles()
   const [anchorEl, setAnchorEl] = React.useState(null)
 
@@ -48,7 +51,11 @@ export default function SimpleMenu() {
           horizontal: 'right',
         }}
       >
-        <MenuItem onClick={handleClose}>
+        <MenuItem
+          onClick={handleClose}
+          component={Link}
+          to={role !== 'admin' ? '/app/profile' : '/admin/profile'}
+        >
           <Person
             fontSize="small"
             color="action"

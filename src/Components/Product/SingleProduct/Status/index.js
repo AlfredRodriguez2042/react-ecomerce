@@ -6,7 +6,7 @@ const Status = ({ stock }) => {
     <>
       Status:{' '}
       {stock > 0 ? (
-        <Typography component="span" variant="body2" color="secondary">
+        <Typography component="span" variant="body2" color="primary">
           In Stock
         </Typography>
       ) : (

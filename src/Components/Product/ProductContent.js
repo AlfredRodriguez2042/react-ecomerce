@@ -33,7 +33,7 @@ const useStyles = makeStyles((theme) => ({
 export const ProductContent = ({ product }) => {
   const classes = useStyles()
   return (
-    <Grid align="center" item xs={12} sm={6} md={4} lg={3}>
+    <Grid align="center" item xs={12} sm={6} md={4} lg={4}>
       <Link to={`/product/${product._id}`} className={classes.link}>
         <Card className={classes.card}>
           <CardMedia className={classes.cardMedia} image={product.image} />
