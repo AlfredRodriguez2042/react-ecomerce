@@ -1,6 +1,6 @@
 import React from 'react'
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart'
-import { IconButton } from '@material-ui/core'
+import { Badge, IconButton } from '@material-ui/core'
 import { useSelector } from 'react-redux'
 
 const ButtonCart = () => {
@@ -9,9 +9,9 @@ const ButtonCart = () => {
   return (
     <div>
       <IconButton>
-        {state.length > 0 ? <small>{state.length}</small> : null}
-
-        <ShoppingCartIcon />
+        <Badge badgeContent={state.length} color="error">
+          <ShoppingCartIcon />
+        </Badge>
       </IconButton>
     </div>
   )
